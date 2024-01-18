@@ -1,7 +1,7 @@
 {
-  "name": "my-org",
+  "name": "admin",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/my-org/src",
+  "sourceRoot": "apps/admin/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/my-org"
+        "outputPath": "dist/apps/admin"
       },
       "configurations": {
         "development": {
@@ -24,16 +24,17 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "my-org:build"
+        "buildTarget": "admin:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "my-org:build:development",
+          "buildTarget": "admin:build:development",
           "hmr": true,
-          "proxyConfig": "apps/my-org/proxy.conf.json"
+          "proxyConfig": "apps/admin/proxy.conf.json",
+          "port": 4201
         },
         "production": {
-          "buildTarget": "my-org:build:production",
+          "buildTarget": "admin:build:production",
           "hmr": false
         }
       }
@@ -42,14 +43,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "my-org:build"
+        "buildTarget": "admin:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "my-org:build:development"
+          "buildTarget": "admin:build:development"
         },
         "production": {
-          "buildTarget": "my-org:build:production"
+          "buildTarget": "admin:build:production"
         }
       }
     },
@@ -57,18 +58,12 @@
       "executor": "@nx/vite:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/apps/my-org"
+        "reportsDirectory": "../../coverage/apps/admin"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "my-org:build"
-      }
     }
   },
   "tags": []

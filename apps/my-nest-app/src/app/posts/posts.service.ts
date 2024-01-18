@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-
+import { Post } from '@my-org/shared-types';
 @Injectable()
 export class PostsService {
-  private readonly posts: any[] = [
+  private readonly posts: Post[] = [
     {
       id: 1,
       title: 'First post',
@@ -22,11 +22,15 @@ export class PostsService {
     },
   ];
   create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
+    console.log('🚀 ~ PostsService ~ create ~ createPostDto:', createPostDto);
+    const newPost = { ...createPostDto, id: this.posts.length + 1 };
+    console.log('🚀 ~ PostsService ~ create ~ newPost:', newPost);
+    this.posts.push(newPost);
+    return newPost;
   }
 
   findAll() {
-    return `This action returns all posts`;
+    return this.posts;
   }
 
   findOne(id: number) {

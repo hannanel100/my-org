@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@my-org/shared-types": ["libs/shared-types/src/index.ts"],
       "@my-org/ui": ["libs/ui/src/index.ts"]
     }
   },
